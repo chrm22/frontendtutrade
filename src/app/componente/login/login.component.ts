@@ -31,8 +31,6 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  username: string;
-  password: string;
   hide = true;
 
   fb: FormBuilder = inject(FormBuilder);
@@ -47,16 +45,20 @@ export class LoginComponent {
   }
 
   login() {
-    this.authService.login(this.username, this.password).subscribe(
-      response => {
-        // Redirigir al usuario después del login
-        // this.router.navigate(['/dashboard']);
-        console.log('Login successful');
-      },
-      error => {
-        console.error('Login failed', error);
-      }
-    );
+    if (this.loginForm.valid) {
+      this.authService.login(this.loginForm.value.username, this.loginForm.value.password).subscribe({
+        next: (response) => {
+          console.log("Login exitoso");
+          this.router.navigate(['/app/feed']);
+          // this.router.navigate(['/dashboard']);
+        },
+        error: (error) => {
+          console.error('Error en el inicio de sesión', error);
+        }
+      });
+    } else {
+      console.error("Formulario no válido")
+    }
   }
 
   // onSubmit() {
