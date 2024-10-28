@@ -85,8 +85,10 @@ export class UsuarioRegistroComponent {
           this.usuarioService.setList(data)
         })
       })
+
+      this.router.navigate(['/app/feed']);
     } else {
-      console.log("Formulario no válido")
+      console.error("Formulario no válido")
     }
   }
 }
