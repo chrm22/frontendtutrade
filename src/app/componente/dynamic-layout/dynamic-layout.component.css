@@ -1,0 +1,59 @@
+.navbar.mat-toolbar {
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border-bottom: 3px solid darkgray;
+  height: 80px;
+}
+
+.opciones {
+  display: flex;
+  transition: color 0.2s ease, border-bottom-color 0.2s ease;
+}
+
+.opciones a {
+  display: inline-block;
+  margin-left: 1.5rem;
+  color: #f29435;
+  text-decoration: none;
+  text-transform: capitalize;
+  font-weight: normal;
+  border-bottom: 2px solid #f29435;
+  padding-bottom: 4px;
+}
+
+.opciones a:hover {
+  color: #d77a2b !important;
+  border-bottom-color: #d77a2b !important;
+  cursor: pointer;
+}
+
+.mat-icon {
+  align-items: center;
+  vertical-align: middle
+}
+
+a[mat-flat-button] {
+  background-color: #f0ad4e !important;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+a[mat-flat-button]:hover {
+  background-color: #f29435 !important;
+  color: white;
+}
+
+[mat-menu-item] {
+  background-color: white;
+  color: #7D7D7D !important;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+[mat-menu-item]:hover {
+  color: #d77a2b !important;
+  background-color: whitesmoke !important;
+}
+
+.menu-trueques.mat-mdc-menu-panel {
+  background-color: white;
+}

@@ -1,0 +1,20 @@
+<mat-toolbar class="navbar">
+  <span>My App</span>
+  <span class="left-side">
+
+    <span class="opciones">
+      <a [routerLink]="'/app/feed'">Inicio</a>
+      <a>Mi Perfil</a>
+      <a>Mis Artículos</a>
+      <div>
+        <a [matMenuTriggerFor]="trueques">Trueques<mat-icon>arrow_drop_down</mat-icon></a>
+      </div>
+      <mat-menu class="menu-trueques" #trueques>
+        <a mat-menu-item>Propuestas enviadas</a>
+        <a mat-menu-item>Propuestas recibidas</a>
+      </mat-menu>
+    </span>
+
+  </span>
+  <a mat-flat-button (click)="logout()">Cerrar sesión</a>
+</mat-toolbar>
