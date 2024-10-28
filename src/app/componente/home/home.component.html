@@ -1,1 +1,9 @@
-<p>home works!</p>
+<mat-toolbar class="navbar">
+  <span style="margin-left: 5%">My App</span>
+  <span class="opciones">
+      <a
+        mat-flat-button [routerLink]="'/login'"
+        style="background-color: #f29435">Iniciar sesión</a>
+      <a mat-flat-button [routerLink]="'/registro'">Registrarse</a>
+  </span>
+</mat-toolbar>

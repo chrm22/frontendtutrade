@@ -1,0 +1,16 @@
+.navbar {
+  justify-content: space-between;
+}
+
+.opciones {
+  margin-right: 5%;
+}
+
+.opciones a[mat-flat-button] {
+  color: white;
+  font-weight: normal;
+  font-size: 1rem;
+  border-radius: 8px;
+  margin-left: 1rem;
+}
+
