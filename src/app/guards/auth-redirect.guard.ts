@@ -7,8 +7,9 @@ import {AuthService} from '../services/auth.service';
 })
 export class AuthRedirectGuard implements CanActivate {
   private authService: AuthService = inject(AuthService);
+  private router: Router = inject(Router);
 
-  constructor(private router: Router) {}
+  constructor() {}
 
   canActivate(): boolean {
     const token = this.authService.getToken();
