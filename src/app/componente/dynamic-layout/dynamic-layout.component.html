@@ -4,11 +4,13 @@
 
     <span class="opciones">
       <a [routerLink]="'/app/feed'">Inicio</a>
-      <a>Mi Perfil</a>
-      <a>Mis Artículos</a>
-      <div>
-        <a [matMenuTriggerFor]="trueques">Trueques<mat-icon>arrow_drop_down</mat-icon></a>
-      </div>
+      <a [routerLink]="'/app/perfil'">Mi Perfil</a>
+      <a [matMenuTriggerFor]="articulos">Mis Artículos<mat-icon>arrow_drop_down</mat-icon></a>
+      <a [matMenuTriggerFor]="trueques">Trueques<mat-icon>arrow_drop_down</mat-icon></a>
+      <mat-menu class="menu-articulos" #articulos>
+        <a mat-menu-item>Ver artículos registrados</a>
+        <a mat-menu-item [routerLink]="'/app/registrar-articulo'">Registrar un artículo</a>
+      </mat-menu>
       <mat-menu class="menu-trueques" #trueques>
         <a mat-menu-item>Propuestas enviadas</a>
         <a mat-menu-item>Propuestas recibidas</a>
@@ -18,3 +20,5 @@
   </span>
   <a mat-flat-button (click)="logout()">Cerrar sesión</a>
 </mat-toolbar>
+<mat-divider style="border-top: 2px solid darkgray;"></mat-divider>
+<router-outlet></router-outlet>

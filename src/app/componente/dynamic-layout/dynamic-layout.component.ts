@@ -3,8 +3,10 @@ import {MatIcon} from '@angular/material/icon';
 import {MatAnchor, MatIconButton} from '@angular/material/button';
 import {MatToolbar} from '@angular/material/toolbar';
 import {AuthService} from '../../services/auth.service';
-import {Router, RouterLink} from '@angular/router';
+import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
+import {MatDivider} from '@angular/material/divider';
+import {FeedComponent} from '../feed/feed.component';
 
 @Component({
   selector: 'app-dynamic-layout',
@@ -17,7 +19,10 @@ import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
     RouterLink,
     MatMenuTrigger,
     MatMenu,
-    MatMenuItem
+    MatMenuItem,
+    MatDivider,
+    FeedComponent,
+    RouterOutlet
   ],
   templateUrl: './dynamic-layout.component.html',
   styleUrl: './dynamic-layout.component.css',

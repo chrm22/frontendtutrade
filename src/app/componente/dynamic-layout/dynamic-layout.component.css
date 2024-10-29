@@ -2,7 +2,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  border-bottom: 3px solid darkgray;
+  /*border-bottom: 3px solid darkgray;*/
   height: 80px;
 }
 
@@ -55,5 +55,9 @@ a[mat-flat-button]:hover {
 }
 
 .menu-trueques.mat-mdc-menu-panel {
+  background-color: white;
+}
+
+.menu-articulos.mat-mdc-menu-panel {
   background-color: white;
 }
