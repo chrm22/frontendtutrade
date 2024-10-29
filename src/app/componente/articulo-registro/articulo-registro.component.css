@@ -1,0 +1,80 @@
+.titulo-container {
+  text-align: center;
+  margin: 3% 0;
+  font-size: 2rem;
+  font-weight: lighter;
+}
+
+.form-articulo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.imagen-container, .example-form {
+  width: 50%;
+}
+
+.imagen-container {
+  text-align: right;
+  margin-right: 5%;
+  overflow: hidden;
+}
+
+.imagen-container img {
+  opacity: 80%;
+  transition: opacity 0.2s ease;
+  object-fit: cover;
+}
+
+.imagen-container img:hover {
+  opacity: 100%;
+  cursor: pointer;
+}
+
+.example-form {
+  text-align: left;
+  margin-left: 5%;
+  margin-right: 1%;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.example-form-field {
+  width: 50%;
+  margin-bottom: 20px;
+}
+
+.mat-form-field {
+  width: 50%;
+  display: block;
+  background-color: green;
+}
+
+.example-full-width {
+  width: 50%;
+}
+
+button[mat-flat-button] {
+  background-color: #f29435 !important;
+  color: white !important;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  margin: auto;
+}
+
+button[mat-flat-button]:hover {
+  background-color: #d77a2b !important;
+  color: white;
+}
+
+.submit-container {
+  display:flex;
+  justify-content: center;
+  margin-top: 5%;
+}
+
+.mat-mdc-radio-button ~ .mat-mdc-radio-button {
+  margin-left: 16px;
+}

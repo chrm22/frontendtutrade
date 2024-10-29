@@ -1,0 +1,36 @@
+  <div>
+    <div class="titulo-container">
+      Registro de artículo
+    </div>
+    <div class="form-articulo-container">
+      <div class="imagen-container">
+        <img [ngSrc]="imageUrl || defaultImageUrl" alt="Imagen de artículo" height="300" width="300"
+             style="border-radius: 100%; border: 3px solid #f0ad4e;;"
+             (click)="fileInput.click()">
+        <input #fileInput type="file" (change)="onImageSelected($event)" accept="image/*" style="display: none;" />
+      </div>
+
+      <form [formGroup]="datosForm" class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre de artículo</mat-label>
+          <input matInput placeholder="Ej. Celular, consola..." formControlName="nombre">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Descripción de artículo</mat-label>
+          <textarea matInput rows="6" placeholder="Ej. Tiempo de uso, condición..."
+                    formControlName="descripcion"></textarea>
+        </mat-form-field>
+
+        <mat-radio-group aria-label="Select an option" formControlName="publico">
+          <mat-radio-button [value]="true">Público</mat-radio-button>
+          <mat-radio-button [value]="false">Privado</mat-radio-button>
+        </mat-radio-group>
+
+      </form>
+    </div>
+    <div class="submit-container">
+      <button mat-flat-button (click)="onSubmit()">Registrar producto</button>
+    </div>
+  </div>
+
