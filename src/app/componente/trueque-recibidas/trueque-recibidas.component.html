@@ -1,0 +1,58 @@
+<div style="justify-items: center; align-items: center; margin-top: 20px">
+  <mat-card class="solicitud-container" appearance="outlined" *ngFor="let recibida of misRecibidas">
+    <!--            [routerLink]="'/app/articulo/' + articulo.id">-->
+    <!--    <mat-card-header style="margin-bottom: 5px">-->
+    <!--      &lt;!&ndash;    <div mat-card-avatar class="example-header-image"></div>&ndash;&gt;-->
+    <!--      <mat-card-title>{{ articulo.usuario.username }}</mat-card-title>-->
+    <!--      <mat-card-subtitle style="color:#7D7D7D; font-weight: lighter">{{ articulo.usuario.localidad }}</mat-card-subtitle>-->
+    <!--    </mat-card-header>-->
+
+    <!--    <img mat-card-image ngSrc="{{ articulo.imagenes[0].url }}" alt="{{ articulo.nombre }}" width="300" height="300"-->
+    <!--         style="object-fit: cover"-->
+    <!--         priority />-->
+
+    <mat-card-content>
+
+      <mat-card-content class="articulo-solicitud-container">
+
+        <h3>Tu artículo:</h3>
+
+        <div class="contenido-articulo-solicitud">
+
+          <img mat-card-sm-image ngSrc="{{ recibida.articulo.imagenes[0].url }}"
+               height="75" width="75" alt="{{ recibida.articulo.nombre }}">
+
+          <div class="datos-articulo-solicitud">
+            <h4>{{ recibida.articulo.nombre }}</h4>
+          </div>
+
+        </div>
+
+      </mat-card-content>
+
+      <mat-card-content class="articulo-solicitud-container">
+
+        <h3>Artículo ofrecido:</h3>
+
+        <div class="contenido-articulo-solicitud">
+
+          <img mat-card-sm-image ngSrc="{{ recibida.articuloOfrecido.imagenes[0].url }}"
+               height="75" width="75" alt="{{ recibida.articuloOfrecido.nombre }}">
+
+          <div class="datos-articulo-solicitud">
+            <h4>{{ recibida.articuloOfrecido.nombre }}</h4>
+            <p>De
+              <span style="color: #f0ad4e">
+                {{ recibida.articuloOfrecido.usuario.nombreCompleto }}
+              </span>
+            </p>
+          </div>
+
+        </div>
+
+      </mat-card-content>
+
+    </mat-card-content>
+
+  </mat-card>
+</div>
