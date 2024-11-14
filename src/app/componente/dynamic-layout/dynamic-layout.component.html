@@ -8,12 +8,12 @@
       <a [matMenuTriggerFor]="articulos">Mis Artículos<mat-icon>arrow_drop_down</mat-icon></a>
       <a [matMenuTriggerFor]="trueques">Trueques<mat-icon>arrow_drop_down</mat-icon></a>
       <mat-menu class="menu-articulos" #articulos>
-        <a mat-menu-item>Ver artículos registrados</a>
+        <a mat-menu-item [routerLink]="'/app/mis-articulos'">Ver artículos registrados</a>
         <a mat-menu-item [routerLink]="'/app/registrar-articulo'">Registrar un artículo</a>
       </mat-menu>
       <mat-menu class="menu-trueques" #trueques>
-        <a mat-menu-item>Propuestas enviadas</a>
-        <a mat-menu-item>Propuestas recibidas</a>
+        <a mat-menu-item [routerLink]="'/app/propuestas/enviadas'">Propuestas enviadas</a>
+        <a mat-menu-item [routerLink]="'/app/propuestas/recibidas'">Propuestas recibidas</a>
       </mat-menu>
     </span>
 
