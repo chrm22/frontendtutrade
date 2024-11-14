@@ -1,0 +1,16 @@
+.mi-articulo-card {
+  /*max-width: 300px;*/
+  margin: 20px 0;
+  transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out, border 0.1s ease-in-out;;
+}
+
+.mi-articulo-card .mat-card-title-group {
+  margin: 20px 20px;
+}
+
+.mi-articulo-card:hover {
+  cursor: pointer;
+  transform: scale(1.01);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);  /* Añade sombra cuando se pasa el mouse */
+  /*border: 1px solid #333;*/
+}

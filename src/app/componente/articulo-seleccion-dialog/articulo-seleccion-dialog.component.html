@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Selecciona un artículo para ofrecer</h2>
+<mat-dialog-content>
+
+  <div>
+    <mat-card class="mi-articulo-card" *ngFor="let articulo of misArticulos"
+              (click)="seleccionarArticulo(articulo.id)">
+      <mat-card-title-group
+        style="align-items: center; margin: 0 20px; justify-content: space-between">
+        <img mat-card-sm-image
+             ngSrc="{{ articulo.imagenes[0].url }}"
+             alt="{{ articulo?.nombre }}"
+             height="75" width="75"
+             style="object-fit: cover; border-radius: 10px; margin-right: 20px">
+        <mat-card-title>{{ articulo?.nombre }}</mat-card-title>
+      </mat-card-title-group>
+    </mat-card>
+  </div>
+
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="cancelar()">Cancelar</button>
+</mat-dialog-actions>
