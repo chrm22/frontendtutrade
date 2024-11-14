@@ -10,6 +10,10 @@ export class Usuario {
   telefono: string;
   ciudad: string;
   pais: string;
+
   cantidadIntercambios: number;
   calificacionPromedio: number;
+
+  localidad: string;
+  nombreCompleto: string;
 }
