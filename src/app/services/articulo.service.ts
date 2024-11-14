@@ -14,6 +14,10 @@ export class ArticuloService {
 
   constructor() { }
 
+  getById(id: number): Observable<Articulo> {
+    return this.http.get<Articulo>(`${this.url}/${id}`);
+  }
+
   list(): Observable<any> {
     return this.http.get<Articulo[]>(this.url);
   }
@@ -23,6 +27,15 @@ export class ArticuloService {
   setList(listaNueva: Articulo[]) {
     this.listaCambio.next(listaNueva);
   }
+
+  listarMisArticulos(): Observable<any> {
+    return this.http.get<Articulo[]>(environment.apiUrl + "/mis-articulos");
+  }
+
+  listarMisArticulosExceptoOfrecidosA(id: number): Observable<any> {
+    return this.http.get<Articulo[]>(`${environment.apiUrl}/mis-articulos/except/${id}`);
+  }
+
   getList(): Observable<any> {
     return this.listaCambio.asObservable();
   }
