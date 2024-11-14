@@ -5,7 +5,6 @@ import {MatFormField, MatLabel} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
 import {MatButton} from '@angular/material/button';
 import {CloudinaryModule} from '@cloudinary/ng';
-import {Cloudinary, CloudinaryImage} from '@cloudinary/url-gen';
 import {environment} from '../../../environments/environment';
 import {UploadImageService} from '../../services/upload-image.service';
 import {ArticuloService} from '../../services/articulo.service';
@@ -13,7 +12,6 @@ import {Articulo} from '../../model/articulo';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatRadioButton, MatRadioGroup} from '@angular/material/radio';
 import {Imagen} from '../../model/imagen';
-import {image} from '@cloudinary/url-gen/qualifiers/source';
 
 @Component({
   selector: 'app-articulo-registro',
@@ -43,9 +41,6 @@ export class ArticuloRegistroComponent {
   defaultImageUrl: string = "assets/placeholder-image.svg";
 
   file: File | undefined;
-
-  private nombre: string;
-  private descripcion: string;
 
   constructor() {
     this.datosForm = this.fb.group({
@@ -102,7 +97,7 @@ export class ArticuloRegistroComponent {
         const imagen = new Imagen();
         imagen.nroImagen = 1;
         imagen.url = response.secure_url;
-        imagen.descripcion = 'test';
+        // imagen.descripcion = 'test';
         // faltan etiquetas
         // falta descripción de la imagen
 
@@ -111,7 +106,7 @@ export class ArticuloRegistroComponent {
         articulo.descripcion = this.datosForm.value.descripcion;
         articulo.publico = this.datosForm.value.publico;
         articulo.imagenes = [imagen];
-        articulo.etiquetas = ['test'];
+        articulo.etiquetas = [];
 
         this.articuloService.insert(articulo).subscribe({
           next: (res) => {
