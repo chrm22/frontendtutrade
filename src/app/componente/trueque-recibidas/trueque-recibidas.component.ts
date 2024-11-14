@@ -3,7 +3,7 @@ import {Pedido} from '../../model/pedido';
 import {ArticuloService} from '../../services/articulo.service';
 import {PedidoService} from '../../services/pedido.service';
 import {MatCard, MatCardContent, MatCardSmImage} from '@angular/material/card';
-import {NgForOf, NgOptimizedImage} from '@angular/common';
+import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-trueque-recibidas',
@@ -13,7 +13,8 @@ import {NgForOf, NgOptimizedImage} from '@angular/common';
     MatCardContent,
     MatCardSmImage,
     NgForOf,
-    NgOptimizedImage
+    NgOptimizedImage,
+    NgIf
   ],
   templateUrl: './trueque-recibidas.component.html',
   styleUrl: './trueque-recibidas.component.css'

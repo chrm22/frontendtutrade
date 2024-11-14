@@ -1,6 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {MatCard, MatCardContent, MatCardImage, MatCardSmImage} from '@angular/material/card';
-import {NgForOf, NgOptimizedImage} from '@angular/common';
+import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
 import {RouterLink} from '@angular/router';
 import {PedidoService} from '../../services/pedido.service';
 import {ArticuloService} from '../../services/articulo.service';
@@ -16,7 +16,8 @@ import {Pedido} from '../../model/pedido';
     NgForOf,
     NgOptimizedImage,
     RouterLink,
-    MatCardSmImage
+    MatCardSmImage,
+    NgIf
   ],
   templateUrl: './trueque-enviadas.component.html',
   styleUrl: './trueque-enviadas.component.css'

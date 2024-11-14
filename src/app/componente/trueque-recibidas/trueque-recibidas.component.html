@@ -1,4 +1,7 @@
 <div style="justify-items: center; align-items: center; margin-top: 20px">
+
+  <h2  *ngIf="misRecibidas.length == 0">No has recibido propuestas de trueque</h2>
+
   <mat-card class="solicitud-container" appearance="outlined" *ngFor="let recibida of misRecibidas">
     <!--            [routerLink]="'/app/articulo/' + articulo.id">-->
     <!--    <mat-card-header style="margin-bottom: 5px">-->
