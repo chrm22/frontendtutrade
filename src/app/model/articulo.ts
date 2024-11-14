@@ -1,4 +1,5 @@
 import {Imagen} from './imagen';
+import {Usuario} from './usuario';
 
 export class Articulo {
   id: number;
@@ -8,4 +9,7 @@ export class Articulo {
   etiquetas: string[] = [];
   imagenes: Imagen[] = [];
   estado: string;
+
+  usuario: Usuario;
+  username: string;
 }
