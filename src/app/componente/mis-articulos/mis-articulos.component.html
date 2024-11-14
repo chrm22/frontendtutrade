@@ -1,0 +1,21 @@
+<link rel="preconnect" href="https://res.cloudinary.com">
+
+<div class="mis-articulos-container">
+  <mat-card class="mi-articulo-card" appearance="outlined" *ngFor="let articulo of misArticulos"
+            style="background-color: whitesmoke; border-color: whitesmoke"
+            [routerLink]="'/app/articulo/' + articulo.id">
+<!--    <mat-card-header style="margin-bottom: 5px">-->
+<!--      &lt;!&ndash;    <div mat-card-avatar class="example-header-image"></div>&ndash;&gt;-->
+<!--      <mat-card-title>{{ articulo.usuario.username }}</mat-card-title>-->
+<!--      <mat-card-subtitle style="color:#7D7D7D; font-weight: lighter">{{ articulo.usuario.localidad }}</mat-card-subtitle>-->
+<!--    </mat-card-header>-->
+    <img mat-card-image ngSrc="{{ articulo.imagenes[0].url }}" alt="{{ articulo.nombre }}" width="300" height="300"
+         style="object-fit: cover"
+         priority />
+    <mat-card-content>
+      <h3 style="font-weight: lighter">{{ articulo.nombre }}</h3>
+      <p>Estado: {{ articulo.estado }}</p>
+      <p>{{ articulo.publico ? 'Público' : 'Privado' }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
