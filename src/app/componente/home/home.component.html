@@ -1,5 +1,5 @@
 <mat-toolbar class="navbar">
-  <span style="margin-left: 5%">My App</span>
+  <img src="https://i.postimg.cc/gkbq94WB/logo.png" alt="Tru Trade Logo" class="logo">
   <span class="opciones">
       <a
         mat-flat-button [routerLink]="'/login'"
@@ -7,3 +7,39 @@
       <a mat-flat-button [routerLink]="'/registro'">Registrarse</a>
   </span>
 </mat-toolbar>
+
+<!-- Main Content -->
+<main class="main-content">
+  <section class="hero">
+    <div class="text-content">
+      <h1>TRU TRADE</h1>
+      <p>"Lo que nos diferencia como compañia es que queremos dar
+        soluciones a cualquier usuario que quiera intercambiar cualquier
+        tipo de artículos, sin importar dónde se encuentra. Si tienes un
+        problema  de intercambiar tus articulos acude a nosotros,
+        te ayudaremos a resolverlo"</p>
+      <a mat-flat-button [routerLink]="'/registro'" class="button pink">Iniciar</a>
+    </div>
+    <img src="https://i.postimg.cc/W46NYNs4/phone.jpg" alt="Phone Image" class="hero-image">
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-section">
+    <img src="https://i.postimg.cc/gkbq94WB/logo.png" alt="Tru Trade Logo" class="footer-logo">
+  </div>
+  <div class="footer-section">
+    <h3>Navegación</h3>
+    <p>Inicio</p>
+    <p>Buscar</p>
+    <p>Perfil</p>
+  </div>
+  <div class="footer-section">
+    <h3>Contáctanos</h3>
+    <p>Teléfono: 900400507</p>
+    <p>Facebook: Tru Trade</p>
+    <p>WhatsApp: Trutrade</p>
+  </div>
+</footer>
+
