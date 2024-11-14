@@ -1,5 +1,5 @@
 .example-card {
-  max-width: 300px;
+  max-width: 280px;
   transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out, border 0.1s ease-in-out;
 }
 
