@@ -16,6 +16,10 @@ export class PedidoService {
 
   constructor() { }
 
+  getById(id: number): Observable<any> {
+    return this.http.get(`${this.url}/pedidos/${id}`);
+  }
+
   crearPedido(pedido: Pedido, idArticulo: number): Observable<any> {
     return this.http.post(`${this.url}/articulos/${idArticulo}`, pedido);
   }
