@@ -1,7 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
-import {Observable} from 'rxjs';
+import {catchError, map, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +16,16 @@ export class UploadImageService {
 
   uploadImg(data: any): Observable<any> {
     return this.http.post(this.url, data);
+  }
+
+  checkImageExistence(url: string): Observable<boolean> {
+    return this.http.head(url, { observe: 'response' }).pipe(
+      map(response => {
+        return response.status === 200;
+      }),
+      catchError(() => {
+        return [false];
+      })
+    );
   }
 }
