@@ -21,6 +21,14 @@ export class UsuarioService {
     return this.http.post(this.url + "/register", usuario);
   }
 
+  getById(id: number): Observable<any> {
+    return this.http.get<Usuario>(`${this.url}/id/${id}`);
+  }
+
+  getByUsername(username: string): Observable<any> {
+    return this.http.get<Usuario>(`${this.url}/username/${username}`);
+  }
+
   setList(listaNueva: Usuario[]) {
     this.listaCambio.next(listaNueva);
   }
