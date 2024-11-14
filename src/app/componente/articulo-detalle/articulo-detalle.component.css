@@ -1,0 +1,23 @@
+.titulo-detalle-container {
+  text-align: center;
+  margin: 3% 0;
+  font-size: 2rem;
+  font-weight: lighter;
+}
+
+.articulo-detalle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 2rem;
+}
+
+.articulo-datos-container {
+  display: flex;
+  justify-content: center; /* Centra el contenido dentro de la tarjeta */
+  max-width: 400px; /* Puedes ajustar el tamaño según sea necesario */
+  width: 100%;
+  align-items: center;
+}
+

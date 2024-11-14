@@ -1,0 +1,41 @@
+<link rel="preconnect" href="https://res.cloudinary.com">
+
+<div class="titulo-detalle-container">
+  Datos del artículo
+</div>
+<div class="articulo-detalle-container">
+  <div class="imagen-container" >
+    <img ngSrc="{{ articulo?.imagenes?.[0]?.url }}" alt="{{ articulo?.nombre }}" height="400" width="400"
+      style="object-fit: cover; border-radius: 20px" priority>
+  </div>
+
+  <mat-card class="articulo-datos-container" style="background-color: white; box-shadow: none;">
+    <mat-card-header style="text-align: center">
+      <mat-card-title>{{ articulo?.nombre }}</mat-card-title>
+      <mat-card-subtitle *ngIf="!esArticuloDelUsuario(articulo.usuario.id)" style="color:#333333; font-weight: lighter">
+        De <span style="color: #f0ad4e; font-weight: normal">{{ articulo?.usuario?.nombreCompleto }}</span>
+      </mat-card-subtitle>
+      <mat-card-subtitle *ngIf="esArticuloDelUsuario(articulo.usuario.id)" style="color:#333333; font-weight: lighter">
+        Este artículo te pertenece
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ articulo?.descripcion }}</p>
+    </mat-card-content>
+
+    <button mat-flat-button style="background-color: #f29435; color: white; margin-top: 50px"
+            *ngIf="!esArticuloDelUsuario(articulo.usuario.id)"
+            [routerLink]="'/app/articulo/editar/' + articulo.id"
+            (click)="abrirSeleccionArticuloDialog()">
+      Enviar solicitud
+    </button>
+
+    <button mat-flat-button style="background-color: dodgerblue; color: white; margin-top: 50px"
+            *ngIf="esArticuloDelUsuario(articulo.usuario.id)"
+            [routerLink]="'/app/articulo/editar/' + articulo.id">
+      Editar artículo
+    </button>
+
+  </mat-card>
+</div>
+
