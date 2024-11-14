@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Confirmar solicitud</h2>
+<mat-dialog-content>
+  <p>Artículo solicitado: <strong>{{ data.articuloSolicitado.nombre }}</strong></p>
+  <p>Artículo ofrecido: <strong>{{ data.articuloOfrecido.nombre }}</strong></p>
+  <p>¿Confirmas esta solicitud?</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-button (click)="confirmar()">Confirmar</button>
+</mat-dialog-actions>
