@@ -1,16 +1,18 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {inject, Injectable} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import {environment} from '../../environments/environment';
 import {Token} from '../model/token';
 import {jwtDecode} from 'jwt-decode';
+import {UsuarioService} from './usuario.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private apiUrl = environment.apiUrl + '/usuarios/login';  // URL de tu backend
+  private usuarioService: UsuarioService = inject(UsuarioService);
 
   constructor(private http: HttpClient) { }
 
@@ -47,5 +49,14 @@ export class AuthService {
 
   getAuthorities() {
     return localStorage.getItem("authorities");
+  }
+
+  getUsuarioAutenticado(): Observable<any> {
+    const id = localStorage.getItem("id");
+    if (id) {
+      return this.usuarioService.getById(Number(id));
+    } else {
+      throw new Error("No se encontró un id de usuario autenticado");
+    }
   }
 }
