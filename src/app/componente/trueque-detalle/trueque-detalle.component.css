@@ -1,0 +1,31 @@
+.articulos-pedido-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px
+}
+
+.titulo-detalle-container {
+  text-align: center;
+  margin: 3% 0;
+  font-size: 2rem;
+  font-weight: lighter;
+}
+
+.articulo-detalle-container {
+  justify-content: center;
+  align-items: center;
+
+  /*gap: 2rem;*/
+}
+
+.articulo-card-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.set-botones {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+}
