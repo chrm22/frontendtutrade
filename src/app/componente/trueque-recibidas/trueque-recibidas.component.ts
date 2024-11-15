@@ -4,6 +4,7 @@ import {ArticuloService} from '../../services/articulo.service';
 import {PedidoService} from '../../services/pedido.service';
 import {MatCard, MatCardContent, MatCardSmImage} from '@angular/material/card';
 import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-trueque-recibidas',
@@ -14,7 +15,8 @@ import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
     MatCardSmImage,
     NgForOf,
     NgOptimizedImage,
-    NgIf
+    NgIf,
+    RouterLink
   ],
   templateUrl: './trueque-recibidas.component.html',
   styleUrl: './trueque-recibidas.component.css'
