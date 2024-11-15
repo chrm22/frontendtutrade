@@ -2,7 +2,9 @@
 
   <h2  *ngIf="misEnviadas.length == 0">No has enviado propuestas de trueque</h2>
 
-  <mat-card class="solicitud-container" appearance="outlined" *ngFor="let enviada of misEnviadas">
+  <mat-card class="solicitud-container" appearance="outlined"
+            *ngFor="let enviada of misEnviadas"
+            [routerLink]="'/app/propuestas/' + enviada.id">
 <!--            [routerLink]="'/app/articulo/' + articulo.id">-->
     <!--    <mat-card-header style="margin-bottom: 5px">-->
     <!--      &lt;!&ndash;    <div mat-card-avatar class="example-header-image"></div>&ndash;&gt;-->
