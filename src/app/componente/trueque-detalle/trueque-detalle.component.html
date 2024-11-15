@@ -19,7 +19,7 @@
                  style="object-fit: cover; border-radius: 20px" priority>
           </div>
 
-          <mat-card-header style="text-align: center">
+          <mat-card-header style="text-align: center; text-wrap: wrap; width: 250px">
             <mat-card-title>{{ articuloSolicitado?.nombre }}</mat-card-title>
             <mat-card-subtitle *ngIf="!esArticuloDelUsuario(articuloSolicitado.usuario.id)" style="color:#333333; font-weight: lighter">
               De <span style="color: #f0ad4e; font-weight: normal">{{ articuloSolicitado?.usuario?.nombreCompleto }}</span>
@@ -45,7 +45,7 @@
                  alt="{{ articuloOfrecido?.nombre }}" height="300" width="300"
                  style="object-fit: cover; border-radius: 20px" priority>
           </div>
-          <mat-card-header style="text-align: center">
+          <mat-card-header style="text-align: center; text-wrap: wrap; width: 250px">
             <mat-card-title>{{ articuloOfrecido?.nombre }}</mat-card-title>
             <mat-card-subtitle *ngIf="!esArticuloDelUsuario(articuloOfrecido.usuario.id)" style="color:#333333; font-weight: lighter">
               De <span style="color: #f0ad4e; font-weight: normal">{{ articuloOfrecido?.usuario?.nombreCompleto }}</span>
@@ -59,23 +59,6 @@
       </mat-card>
     </div>
   </div>
-
-
-
-
-    <!--    <button mat-flat-button style="background-color: #f29435; color: white; margin-top: 50px"-->
-    <!--            *ngIf="!esArticuloDelUsuario(articulo.usuario.id)"-->
-    <!--            [routerLink]="'/app/articulo/editar/' + articulo.id"-->
-    <!--            (click)="abrirSeleccionArticuloDialog()">-->
-    <!--      Enviar solicitud-->
-    <!--    </button>-->
-
-    <!--    <button mat-flat-button style="background-color: dodgerblue; color: white; margin-top: 50px"-->
-    <!--            *ngIf="esArticuloDelUsuario(articulo.usuario.id)"-->
-    <!--            [routerLink]="'/app/articulo/editar/' + articulo.id">-->
-    <!--      Editar artículo-->
-    <!--    </button>-->
-
 
   <div class="set-botones" *ngIf="esPedidoEnviado()">
     <button mat-flat-button style="background-color: red; color: white; margin-top: 50px">
