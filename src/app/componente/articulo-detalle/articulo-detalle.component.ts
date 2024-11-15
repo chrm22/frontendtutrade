@@ -54,6 +54,8 @@ export class ArticuloDetalleComponent {
 
   imagenService: UploadImageService = inject(UploadImageService);
   route: ActivatedRoute = inject(ActivatedRoute);
+
+  articuloDisponible: boolean = true;
   placeholderImage: string = "assets/placeholder-image.svg"
 
   ngOnInit(): void {
@@ -71,19 +73,27 @@ export class ArticuloDetalleComponent {
 
     if (id) {
       const articuloId = parseInt(id, 10);
-      this.articuloService.getById(articuloId).subscribe(data => {
-        this.articulo = data;
+      this.articuloService.getById(articuloId).subscribe({
+        next: data => {
+          this.articulo = data;
 
-        const imageUrl = this.articulo.imagenes?.[0]?.url;
+          const imageUrl = this.articulo.imagenes?.[0]?.url;
 
-        if (imageUrl) {
-          this.imagenService.checkImageExistence(imageUrl).subscribe(exists => {
-            if (!exists) {
-              this.articulo.imagenes[0].url = this.placeholderImage;
-            }
-          });
-        } else {
-          this.articulo.imagenes[0].url = this.placeholderImage;
+          if (imageUrl) {
+            this.imagenService.checkImageExistence(imageUrl).subscribe(exists => {
+              if (!exists) {
+                this.articulo.imagenes[0].url = this.placeholderImage;
+              }
+            });
+          } else {
+            this.articulo.imagenes[0].url = this.placeholderImage;
+          }
+
+          this.articuloDisponible = true;
+        },
+        error: err => {
+          this.articuloDisponible = false;
+          console.log("Artículo no disponible", err);
         }
       });
     }
