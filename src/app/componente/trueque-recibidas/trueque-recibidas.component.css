@@ -51,3 +51,20 @@
   display: flex;
   align-items: center;
 }
+
+.estado-container {
+  display: flex;
+  justify-content: right;  /* Centra el contenido horizontalmente */
+  align-items: center;      /* Centra el contenido verticalmente (si es necesario) */
+  margin: 0;
+  padding: 0;
+
+}
+
+.estado-container h4 {
+  color: white;
+  text-align: center;       /* Asegura que el texto dentro del h4 se centre */
+  margin: 0;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
