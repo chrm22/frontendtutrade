@@ -3,7 +3,7 @@ import {Pedido} from '../../model/pedido';
 import {ArticuloService} from '../../services/articulo.service';
 import {PedidoService} from '../../services/pedido.service';
 import {MatCard, MatCardContent, MatCardSmImage} from '@angular/material/card';
-import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
+import {NgForOf, NgIf, NgOptimizedImage, NgStyle} from '@angular/common';
 import {RouterLink} from '@angular/router';
 
 @Component({
@@ -16,7 +16,8 @@ import {RouterLink} from '@angular/router';
     NgForOf,
     NgOptimizedImage,
     NgIf,
-    RouterLink
+    RouterLink,
+    NgStyle
   ],
   templateUrl: './trueque-recibidas.component.html',
   styleUrl: './trueque-recibidas.component.css'
@@ -35,6 +36,21 @@ export class TruequeRecibidasComponent {
         this.misRecibidas = data;
 
         this.misRecibidas.forEach(pedido => {
+
+          switch (pedido.estado) {
+            case 'aceptado': {
+              pedido.color = 'green';
+              break;
+            }
+            case 'rechazado': {
+              pedido.color = 'red';
+              break;
+            }
+            case 'pendiente': {
+              pedido.color = 'blue';
+              break;
+            }
+          }
 
           this.articuloService.getById(pedido.articulo.id).subscribe({
             next: data => {
