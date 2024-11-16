@@ -8,4 +8,8 @@ export class Pedido {
   estado: string;
 
   articuloOfrecidoId: number;
+
+  pedidoId: number;
+  opcion: string;
+  color: string;
 }
