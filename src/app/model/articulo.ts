@@ -12,4 +12,9 @@ export class Articulo {
 
   usuario: Usuario;
   username: string;
+
+  articuloId: number;
+  nuevoEstado: string;
+
+  color: string;
 }

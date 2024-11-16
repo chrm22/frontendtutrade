@@ -4,7 +4,7 @@
 
 .example-card {
   margin: 0 auto;
-  width: 600px;
+  width: 800px;
   background-color: whitesmoke;
 }
 
@@ -17,4 +17,9 @@
 .mat-form-field {
   width: 100%;
   display: block; /* Asegúrate de que cada campo ocupe su propia línea */
+}
+
+.usuario-registro-field {
+  width: 100%;
+  margin-bottom: 10px;
 }

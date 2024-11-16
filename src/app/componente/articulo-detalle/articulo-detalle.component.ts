@@ -1,13 +1,13 @@
 import {Component, inject} from '@angular/core';
-import {ActivatedRoute, RouterLink} from '@angular/router';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {ArticuloService} from '../../services/articulo.service';
 import {Articulo} from '../../model/articulo';
 import {MatButton} from '@angular/material/button';
 import {MatFormField, MatLabel} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
 import {MatRadioButton, MatRadioGroup} from '@angular/material/radio';
-import {NgIf, NgOptimizedImage} from '@angular/common';
-import {ReactiveFormsModule} from '@angular/forms';
+import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatCard, MatCardHeader, MatCardModule} from '@angular/material/card';
 import {UploadImageService} from '../../services/upload-image.service';
 import {Usuario} from '../../model/usuario';
@@ -19,6 +19,7 @@ import {PedidoService} from '../../services/pedido.service';
 import {
   ArticuloConfirmacionDialogComponent
 } from '../articulo-confirmacion-dialog/articulo-confirmacion-dialog.component';
+import {MatOption, MatSelect, MatSelectModule} from '@angular/material/select';
 
 @Component({
   selector: 'app-articulo-detalle',
@@ -36,12 +37,25 @@ import {
     MatCardHeader,
     MatCardModule,
     NgIf,
-    RouterLink
+    RouterLink,
+    MatSelect,
+    FormsModule,
+    MatOption,
+    MatSelectModule,
+    NgForOf
   ],
   templateUrl: './articulo-detalle.component.html',
   styleUrl: './articulo-detalle.component.css'
 })
 export class ArticuloDetalleComponent {
+
+  visibilidad: boolean;
+  selectedValue: string;
+
+  estados = [
+    {value: 'disponible', viewValue: 'Disponible'},
+    {value: 'intercambiado', viewValue: 'Intercambiado'},
+  ];
 
   private authService: AuthService = inject(AuthService);
   articulo: Articulo;
@@ -54,6 +68,7 @@ export class ArticuloDetalleComponent {
 
   imagenService: UploadImageService = inject(UploadImageService);
   route: ActivatedRoute = inject(ActivatedRoute);
+  router: Router = inject(Router);
 
   articuloDisponible: boolean = true;
   placeholderImage: string = "assets/placeholder-image.svg"
@@ -77,6 +92,11 @@ export class ArticuloDetalleComponent {
         next: data => {
           this.articulo = data;
 
+          if (this.esArticuloDelUsuario(this.articulo.usuario.id)) {
+            this.selectedValue = this.articulo.estado;
+            this.visibilidad = this.articulo.publico;
+          }
+
           const imageUrl = this.articulo.imagenes?.[0]?.url;
 
           if (imageUrl) {
@@ -97,6 +117,7 @@ export class ArticuloDetalleComponent {
         }
       });
     }
+
   }
 
   abrirSeleccionArticuloDialog() {
@@ -145,6 +166,30 @@ export class ArticuloDetalleComponent {
         });
       }
     });
+  }
+
+  editarArticulo() {
+    if (this.articulo.estado === this.selectedValue &&
+      this.articulo.publico === this.visibilidad) {
+      alert("No se han registrado cambios");
+      return;
+    }
+
+    const articuloTemp: Articulo = new Articulo();
+
+    articuloTemp.articuloId = this.articulo.id;
+    articuloTemp.nuevoEstado = this.selectedValue;
+    articuloTemp.publico = this.visibilidad;
+
+    this.articuloService.editarEstadoArticulo(articuloTemp).subscribe({
+      next: (data) => {
+        this.router.navigate(['/app/mis-articulos']);
+        alert("Artículo editado exitosamente");
+      },
+      error: (error) => {
+        console.log("Error al registro editado exitosamente", error);
+      }
+    })
   }
 
   protected esArticuloDelUsuario(id: number): boolean {

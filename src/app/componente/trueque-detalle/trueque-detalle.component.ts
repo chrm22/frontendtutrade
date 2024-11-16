@@ -11,6 +11,8 @@ import {Usuario} from '../../model/usuario';
 import {AuthService} from '../../services/auth.service';
 import {TruequeConfirmacionDialogComponent} from '../trueque-confirmacion-dialog/trueque-confirmacion-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
+import {TruequeContactoDialogComponent} from '../trueque-contacto-dialog/trueque-contacto-dialog.component';
+import {UsuarioService} from '../../services/usuario.service';
 
 @Component({
   selector: 'app-trueque-detalle',
@@ -34,6 +36,7 @@ export class TruequeDetalleComponent {
   articuloOfrecido: Articulo;
   usuarioAutenticado: Usuario;
 
+  usuarioService: UsuarioService = inject(UsuarioService)
   articuloService: ArticuloService = inject(ArticuloService);
   pedidoService: PedidoService = inject(PedidoService);
   authService: AuthService = inject(AuthService);
@@ -43,6 +46,24 @@ export class TruequeDetalleComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
 
   pedidoDisponible: boolean = true;
+
+  prefijosTelefonicos: { [pais: string]: string } = {
+    "Argentina": "+54",
+    "Bolivia": "+591",
+    "Brasil": "+55",
+    "Chile": "+56",
+    "Colombia": "+57",
+    "Ecuador": "+593",
+    "México": "+52",
+    "Paraguay": "+595",
+    "Perú": "+51",
+    "Uruguay": "+598",
+    "Venezuela": "+58"
+  };
+
+  obtenerPrefijo(pais: string): string {
+    return this.prefijosTelefonicos[pais] || '';
+  }
 
   ngOnInit(): void {
 
@@ -140,6 +161,54 @@ export class TruequeDetalleComponent {
         console.log(err);
       }
     });
+  }
+
+  abrirDatosContacto() {
+
+    if (this.esPedidoEnviado()) {
+      this.usuarioService.getById(this.articuloSolicitado.usuario.id).subscribe({
+        next: data => {
+          const usuarioPorContactar = data;
+
+          const dialogRef = this.dialog.open(TruequeContactoDialogComponent, {
+            data: {
+              username: usuarioPorContactar.username,
+              nombreCompleto: usuarioPorContactar.nombre + ' ' + usuarioPorContactar.apellido,
+              ciudad: usuarioPorContactar.ciudad,
+              pais: usuarioPorContactar.pais,
+              telefono: this.obtenerPrefijo(usuarioPorContactar.pais) + ' ' + usuarioPorContactar.telefono,
+              telefonoSinEspacio: this.obtenerPrefijo(usuarioPorContactar.pais) + usuarioPorContactar.telefono,
+              email: usuarioPorContactar.email,
+            }
+          });
+        },
+        error: err => {
+          console.log(err);
+        }
+      })
+    }
+    if (this.esPedidoRecibido()) {
+      this.usuarioService.getById(this.articuloOfrecido.usuario.id).subscribe({
+        next: data => {
+          const usuarioPorContactar = data;
+
+          const dialogRef = this.dialog.open(TruequeContactoDialogComponent, {
+            data: {
+              username: usuarioPorContactar.username,
+              nombreCompleto: usuarioPorContactar.nombre + ' ' + usuarioPorContactar.apellido,
+              ciudad: usuarioPorContactar.ciudad,
+              pais: usuarioPorContactar.pais,
+              telefono: this.obtenerPrefijo(usuarioPorContactar.pais) + ' ' + usuarioPorContactar.telefono,
+              telefonoSinEspacio: this.obtenerPrefijo(usuarioPorContactar.pais) + usuarioPorContactar.telefono,
+              email: usuarioPorContactar.email,
+            }
+          });
+        },
+        error: err => {
+          console.log(err);
+        }
+      })
+    }
   }
 
   protected esArticuloDelUsuario(id: number): boolean {

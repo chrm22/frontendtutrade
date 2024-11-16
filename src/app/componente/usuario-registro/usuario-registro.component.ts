@@ -7,7 +7,14 @@ import {
   MatDatepickerModule,
   MatDatepickerToggle
 } from '@angular/material/datepicker';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {
+  AbstractControl,
+  AsyncValidatorFn,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule, ValidationErrors,
+  Validators
+} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
 import {UsuarioService} from '../../services/usuario.service';
@@ -15,6 +22,8 @@ import {Router} from '@angular/router';
 import {Usuario} from '../../model/usuario';
 import {MatButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
+import {NgIf} from '@angular/common';
+import {catchError, map, Observable, of} from 'rxjs';
 
 @Component({
   selector: 'app-usuario-registro',
@@ -34,7 +43,8 @@ import {MatIcon} from '@angular/material/icon';
     MatNativeDateModule,
     MatInputModule,
     MatButton,
-    MatIcon
+    MatIcon,
+    NgIf
   ],
   templateUrl: './usuario-registro.component.html',
   styleUrl: './usuario-registro.component.css'
@@ -50,7 +60,7 @@ export class UsuarioRegistroComponent {
   constructor() {
     this.registroForm = this.fb.group({
       id: [''],
-      username: ['', Validators.required],
+      username: ['', [Validators.required], [this.usernameDisponible()]],
       password: ['', [Validators.required, Validators.min(8)]],
       nombre: ['', [Validators.required, Validators.pattern(this.letraPattern)]],
       apellido: ['', [Validators.required, Validators.pattern(this.letraPattern)]],
@@ -80,15 +90,55 @@ export class UsuarioRegistroComponent {
 
       console.log("Usuario a registrar: ", usuario)
 
-      this.usuarioService.insert(usuario).subscribe((): void => {
-        this.usuarioService.list().subscribe(data => {
-          this.usuarioService.setList(data)
-        })
+      this.usuarioService.insert(usuario).subscribe({
+        next: data => {
+          console.log("Usuario registrado exitosamente", data);
+          this.router.navigate(['/login']);
+        },
+        error: err => {
+          console.log("Error al registrar usuario", err);
+        }
       })
 
-      this.router.navigate(['/app/feed']);
+      // this.router.navigate(['/app/feed']);
     } else {
       console.error("Formulario no válido")
     }
+  }
+
+  existeUsername(): boolean {
+    this.usuarioService.existeUsername(this.registroForm.value.username).subscribe({
+      next: (response) => {
+        if (response.status === 200) {
+          console.log('El nombre de usuario no existe.');
+          return false;
+        }
+        return true;
+      },
+      error: (error) => {
+        if (error.status === 409) {
+          console.log('El nombre de usuario ya existe.');
+        } else {
+          console.error('Error inesperado', error);
+        }
+        return true;
+      }
+    });
+    return true;
+  }
+
+  usernameDisponible(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return this.usuarioService.existeUsername(control.value).pipe(
+        map(response => {
+          // console.log("Hola", response.status);
+          // if (response.status === 200) {
+          //   console.log("holaaaaaa");
+          // }
+          return response.status === 200 ? null : { usernameYaExiste: true };
+        }),
+        catchError(() => of(null))
+      );
+    };
   }
 }

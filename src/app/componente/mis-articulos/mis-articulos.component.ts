@@ -7,10 +7,11 @@ import {
     MatCardSubtitle,
     MatCardTitle
 } from "@angular/material/card";
-import {NgForOf, NgOptimizedImage} from "@angular/common";
+import {NgForOf, NgIf, NgOptimizedImage, NgStyle} from "@angular/common";
 import {RouterLink} from '@angular/router';
 import {Articulo} from '../../model/articulo';
 import {ArticuloService} from '../../services/articulo.service';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-mis-articulos',
@@ -24,7 +25,10 @@ import {ArticuloService} from '../../services/articulo.service';
     MatCardTitle,
     NgForOf,
     NgOptimizedImage,
-    RouterLink
+    RouterLink,
+    NgStyle,
+    MatIcon,
+    NgIf
   ],
   templateUrl: './mis-articulos.component.html',
   styleUrl: './mis-articulos.component.css'
@@ -36,6 +40,19 @@ export class MisArticulosComponent {
     ngOnInit(): void {
       this.articuloService.listarMisArticulos().subscribe(data => {
         this.misArticulos = data;
+
+        this.misArticulos.forEach(articulo => {
+          switch (articulo.estado) {
+            case 'intercambiado': {
+              articulo.color = 'green';
+              break;
+            }
+            case 'disponible': {
+              articulo.color = 'blue';
+              break;
+            }
+          }
+        })
 
       })
     }

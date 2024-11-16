@@ -35,4 +35,20 @@ export class UsuarioService {
   getList(): Observable<any> {
     return this.listaCambio.asObservable();
   }
+
+  existeUsername(username: string): Observable<any> {
+    return this.http.get(`${this.url}/existe/username/${username}`);
+  }
+
+  existeEmail(email: string): Observable<any> {
+    return this.http.get(`${this.url}/existe/email/${email}`);
+  }
+
+  existeDni(dni: string): Observable<any> {
+    return this.http.get(`${this.url}/existe/dni/${dni}`);
+  }
+
+  existeTelefono(telefono: string): Observable<any> {
+    return this.http.get(`${this.url}/existe/telefono/${telefono}`);
+  }
 }

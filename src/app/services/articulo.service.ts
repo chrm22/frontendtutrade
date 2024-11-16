@@ -36,6 +36,10 @@ export class ArticuloService {
     return this.http.get<Articulo[]>(`${environment.apiUrl}/mis-articulos/except/${id}`);
   }
 
+  editarEstadoArticulo(articulo: Articulo): Observable<any> {
+    return this.http.put(`${environment.apiUrl}/mis-articulos`, articulo);
+  }
+
   getList(): Observable<any> {
     return this.listaCambio.asObservable();
   }

@@ -17,6 +17,7 @@ export class AuthInterceptor implements HttpInterceptor {
     const excludedUrls = [
       '/api/usuarios/register',
       '/api/usuarios/login',
+      '/api/usuarios/existe',
       cloudinaryUrl
     ];
 

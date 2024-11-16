@@ -34,11 +34,39 @@
         Enviar solicitud
       </button>
 
-      <button mat-flat-button style="background-color: dodgerblue; color: white; margin-top: 50px"
-              *ngIf="esArticuloDelUsuario(articulo.usuario.id)"
-              [routerLink]="'/app/articulo/editar/' + articulo.id">
-        Editar artículo
-      </button>
+      <div *ngIf="esArticuloDelUsuario(articulo.usuario.id)" style="margin-top: 30px">
+        <div style="display: flex;">
+
+          <p style="margin-right: 20px">Estado del artículo</p>
+          <mat-form-field appearance="fill">
+            <mat-label>Estado</mat-label>
+            <mat-select [(ngModel)]="selectedValue">
+              <mat-option *ngFor="let estado of estados" [value]="estado.value">
+                {{ estado.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <mat-radio-group [(ngModel)]="visibilidad" style="display: flex; gap: 50px;">
+            <mat-radio-button [value]="true">
+              <p style="color: black">Público</p>
+            </mat-radio-button>
+            <mat-radio-button [value]="false">
+              <p style="color: black">Privado</p>
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div style="display: flex; justify-content: center;">
+          <button mat-flat-button style="background-color: dodgerblue; color: white; margin-top: 30px"
+                  (click)="editarArticulo()">
+            Editar artículo
+          </button>
+        </div>
+
+      </div>
 
     </mat-card>
   </div>

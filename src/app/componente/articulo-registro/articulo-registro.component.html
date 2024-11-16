@@ -22,9 +22,13 @@
                     formControlName="descripcion"></textarea>
         </mat-form-field>
 
-        <mat-radio-group aria-label="Select an option" formControlName="publico">
-          <mat-radio-button [value]="true">Público</mat-radio-button>
-          <mat-radio-button [value]="false">Privado</mat-radio-button>
+        <mat-radio-group formControlName="publico">
+          <mat-radio-button [value]="true">
+            <p style="color: black">Público</p>
+          </mat-radio-button>
+          <mat-radio-button [value]="false">
+            <p style="color: black">Privado</p>
+          </mat-radio-button>
         </mat-radio-group>
 
       </form>

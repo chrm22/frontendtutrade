@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Datos de contacto</h2>
+<mat-dialog-content>
+  <p style="color: white">Username: <strong>{{ data.username }}</strong></p>
+  <p style="color: white">Nombre completo: <strong>{{ data.nombreCompleto }}</strong></p>
+  <p style="color: white">Ciudad: <strong>{{ data.ciudad }}</strong></p>
+  <p style="color: white">País: <strong>{{ data.pais }}</strong></p>
+  <p style="color: white">Teléfono: <strong>
+    <a href="https://wa.me/{{ data.telefonoSinEspacio}}"
+      style="text-decoration: none; color: white">
+      {{ data.telefono }}
+    </a>
+  </strong></p>
+  <p>E-mail: <strong>{{ data.email }}</strong></p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="close()">OK</button>
+</mat-dialog-actions>
