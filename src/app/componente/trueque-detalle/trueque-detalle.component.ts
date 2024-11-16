@@ -9,6 +9,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Pedido} from '../../model/pedido';
 import {Usuario} from '../../model/usuario';
 import {AuthService} from '../../services/auth.service';
+import {TruequeConfirmacionDialogComponent} from '../trueque-confirmacion-dialog/trueque-confirmacion-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-trueque-detalle',
@@ -37,6 +39,7 @@ export class TruequeDetalleComponent {
   authService: AuthService = inject(AuthService);
   router: Router = inject(Router);
 
+  dialog: MatDialog = inject(MatDialog);
   route: ActivatedRoute = inject(ActivatedRoute);
 
   pedidoDisponible: boolean = true;
@@ -87,8 +90,56 @@ export class TruequeDetalleComponent {
         }
       });
     }
+  }
 
+  abrirConfirmacionAccion(opcion: string) {
+    const dialogRef = this.dialog.open(TruequeConfirmacionDialogComponent, {
+      data: {
+        pedidoId: this.pedido.id,
+        articuloSolicitado: this.articuloSolicitado,
+        articuloOfrecido: this.articuloOfrecido,
+        opcion: opcion
+      }
+    });
 
+    dialogRef.afterClosed().subscribe({
+      next: (accionConfirmada) => {
+        if (accionConfirmada) {
+          const pedidoTemp: Pedido = new Pedido();
+          pedidoTemp.pedidoId = this.pedido.id;
+          pedidoTemp.opcion = opcion;
+
+          console.log(pedidoTemp);
+
+          if (this.esPedidoRecibido()) {
+            this.pedidoService.aceptarRechazarPedido(pedidoTemp).subscribe({
+              next: data => {
+                this.router.navigate(['/app/propuestas/recibidas'])
+                alert("Pedido " + opcion.replace(/r$/, 'do') + " con éxito");
+                console.log("Pedido " + opcion.replace(/r$/, 'do') + " con éxito", data);
+              },
+              error: error => {
+                console.log(error);
+              }
+            })
+          } else if (this.esPedidoEnviado()) {
+            this.pedidoService.cancelarPedido(pedidoTemp).subscribe({
+              next: data => {
+                this.router.navigate(['/app/propuestas/enviadas'])
+                alert("Pedido cancelado con éxito");
+                console.log("Pedido cancelado con éxito", data);
+              },
+              error: error => {
+                console.log(error);
+              }
+            })
+          }
+        }
+      },
+      error: err => {
+        console.log(err);
+      }
+    });
   }
 
   protected esArticuloDelUsuario(id: number): boolean {

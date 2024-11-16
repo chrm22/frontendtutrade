@@ -60,27 +60,71 @@
     </div>
   </div>
 
-  <div class="set-botones" *ngIf="esPedidoEnviado()">
-    <button mat-flat-button style="background-color: red; color: white; margin-top: 50px">
-      <!--[routerLink]="'/app/articulo/editar/' + articulo.id"-->
-      <!--(click)="abrirSeleccionArticuloDialog()"-->
-      Cancelar solicitud
-    </button>
+  <div *ngIf="esPedidoEnviado()">
+
+    <div *ngIf="pedido.estado === 'pendiente'">
+      <div class="set-botones">
+        <button mat-flat-button style="background-color: red; color: white; margin-top: 50px"
+                (click)="abrirConfirmacionAccion('cancelar')">
+          Cancelar solicitud
+        </button>
+      </div>
+    </div>
+
+    <div class="texto-estado-pedido" *ngIf="pedido.estado === 'aceptado'">
+      <h4>Tu solicitud de trueque ha sido aceptada.</h4>
+
+      <div class="set-botones">
+        <button mat-flat-button style="background-color: whitesmoke; color: black; margin-top: 10px">
+          <!--              (click)="abrirConfirmacionAccion('aceptar')">-->
+          Ver datos de contacto
+        </button>
+      </div>
+
+
+    </div>
+
+    <div class="texto-estado-pedido" *ngIf="pedido.estado === 'rechazado'">
+      <h4 style="color: red">Tu solicitud de trueque ha sido rechazada.</h4>
+    </div>
+
   </div>
 
-  <div class="set-botones" *ngIf="esPedidoRecibido()">
-    <button mat-flat-button style="background-color: dodgerblue; color: white; margin-top: 50px">
-      <!--[routerLink]="'/app/articulo/editar/' + articulo.id"-->
-      <!--(click)="abrirSeleccionArticuloDialog()"-->
-      Aceptar solicitud
-    </button>
+  <div *ngIf="esPedidoRecibido()">
 
-    <button mat-flat-button style="background-color: red; color: white; margin-top: 50px">
-      <!--[routerLink]="'/app/articulo/editar/' + articulo.id"-->
-      <!--(click)="abrirSeleccionArticuloDialog()"-->
-      Rechazar solicitud
-    </button>
+    <div *ngIf="pedido.estado === 'pendiente'">
+      <div class="set-botones">
+        <button mat-flat-button style="background-color: dodgerblue; color: white; margin-top: 50px"
+                (click)="abrirConfirmacionAccion('aceptar')">
+          Aceptar solicitud
+        </button>
+
+        <button mat-flat-button style="background-color: red; color: white; margin-top: 50px"
+                (click)="abrirConfirmacionAccion('rechazar')">
+          Rechazar solicitud
+        </button>
+      </div>
+    </div>
+
+    <div class="texto-estado-pedido" *ngIf="pedido.estado === 'aceptado'">
+      <h4>Has aceptado esta solicitud de trueque.</h4>
+
+      <div class="set-botones">
+        <button mat-flat-button style="background-color: whitesmoke; color: black; margin-top: 10px">
+          <!--              (click)="abrirConfirmacionAccion('aceptar')">-->
+          Ver datos de contacto
+        </button>
+      </div>
+
+    </div>
+
+    <div class="texto-estado-pedido" *ngIf="pedido.estado === 'rechazado'">
+      <h4 style="color: red">Has rechazado esta solicitud de trueque.</h4>
+    </div>
+
   </div>
+
+
 
 </div>
 
