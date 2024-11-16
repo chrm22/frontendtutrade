@@ -5,16 +5,6 @@
   <mat-card class="solicitud-container" appearance="outlined"
             *ngFor="let recibida of misRecibidas"
             [routerLink]="'/app/propuestas/' + recibida.id">
-    <!--            [routerLink]="'/app/articulo/' + articulo.id">-->
-    <!--    <mat-card-header style="margin-bottom: 5px">-->
-    <!--      &lt;!&ndash;    <div mat-card-avatar class="example-header-image"></div>&ndash;&gt;-->
-    <!--      <mat-card-title>{{ articulo.usuario.username }}</mat-card-title>-->
-    <!--      <mat-card-subtitle style="color:#7D7D7D; font-weight: lighter">{{ articulo.usuario.localidad }}</mat-card-subtitle>-->
-    <!--    </mat-card-header>-->
-
-    <!--    <img mat-card-image ngSrc="{{ articulo.imagenes[0].url }}" alt="{{ articulo.nombre }}" width="300" height="300"-->
-    <!--         style="object-fit: cover"-->
-    <!--         priority />-->
 
     <mat-card-content>
 
@@ -56,6 +46,13 @@
         </div>
 
       </mat-card-content>
+
+      <div class="estado-container">
+        <h4 [ngStyle]="{'background-color': recibida.color}"
+            style="font-weight: lighter; text-transform: capitalize">
+          {{ recibida.estado }}
+        </h4>
+      </div>
 
     </mat-card-content>
 
