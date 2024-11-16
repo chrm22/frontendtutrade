@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>{{ data.opcion }} solicitud</h2>
+<mat-dialog-content>
+  <p>Artículo solicitado: <strong>{{ data.articuloSolicitado.nombre }}</strong></p>
+  <p>Artículo ofrecido: <strong>{{ data.articuloOfrecido.nombre }}</strong></p>
+  <p>¿Deseas {{ data.opcion }} esta solicitud?</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="cancelar()">No</button>
+  <button mat-button (click)="confirmar()">Sí</button>
+</mat-dialog-actions>
