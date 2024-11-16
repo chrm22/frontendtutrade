@@ -40,5 +40,11 @@ export class PedidoService {
     return this.http.get<Pedido[]>(`${this.url}/pedidos/realizados/${idArticulo}`);
   }
 
+  aceptarRechazarPedido(pedido: Pedido): Observable<any> {
+    return this.http.put(`${this.url}/pedidos/recibidos`, pedido);
+  }
 
+  cancelarPedido(pedido: Pedido): Observable<any> {
+    return this.http.put(`${this.url}/pedidos/realizados`, pedido);
+  }
 }
