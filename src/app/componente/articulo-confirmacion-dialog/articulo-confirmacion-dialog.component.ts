@@ -29,11 +29,11 @@ export class ArticuloConfirmacionDialogComponent {
 
   confirmar() {
     this.dialogRef.close(true); // Si el usuario confirma
-    console.log("Confirmar de Confirmación");
+    console.log("Envío de solicitud confirmado");
   }
 
   cancelar() {
     this.dialogRef.close(false); // Si el usuario cancela
-    console.log("Cancelar de Confirmación");
+    console.log("Envío de solicitud cancelado");
   }
 }
