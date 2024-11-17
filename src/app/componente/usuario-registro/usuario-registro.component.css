@@ -2,8 +2,21 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%; /* Asegura que el body ocupe el 100% de la altura de la ventana */
+  margin: 0; /* Elimina márgenes predeterminados */
+}
+
+.container {
+  min-height: 100%; /* Asegura que el contenedor ocupe toda la altura de la página */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Esto asegura que el contenido se centre verticalmente */
+  align-items: center; /* Esto centra horizontalmente */
+}
+
 .example-card {
-  margin: 0 auto;
+  margin: 50px auto;
   width: 800px;
   background-color: whitesmoke;
 }
@@ -11,7 +24,6 @@
 .form-container {
   display: flex;
   flex-direction: column;
-  /*gap: 16px; !* Espacio entre los campos *!*/
 }
 
 .mat-form-field {
@@ -22,4 +34,25 @@
 .usuario-registro-field {
   width: 100%;
   margin-bottom: 10px;
+}
+
+.imagen-container {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.imagen-container img {
+  opacity: 80%;
+  transition: opacity 0.2s ease;
+  object-fit: cover;
+}
+
+.imagen-container img:hover {
+  opacity: 100%;
+  cursor: pointer;
 }

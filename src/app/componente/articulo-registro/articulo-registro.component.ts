@@ -97,9 +97,6 @@ export class ArticuloRegistroComponent {
         const imagen = new Imagen();
         imagen.nroImagen = 1;
         imagen.url = response.secure_url;
-        // imagen.descripcion = 'test';
-        // faltan etiquetas
-        // falta descripción de la imagen
 
         const articulo = new Articulo();
         articulo.nombre = this.datosForm.value.nombre;
