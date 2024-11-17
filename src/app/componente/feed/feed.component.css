@@ -15,5 +15,13 @@
   grid-template-columns: repeat(5, 1fr);  /* Define 5 columnas de igual tamaño */
   gap: 20px;  /* Espacio entre las tarjetas */
   margin: 20px auto;
-  padding: 20px;
+  padding: 0 20px 20px 20px;
+}
+
+.username {
+  transition: color 0.1s ease-in-out;
+}
+
+.username:hover {
+  color: #f0ad4e;
 }

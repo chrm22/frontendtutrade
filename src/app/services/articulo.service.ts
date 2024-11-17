@@ -24,6 +24,10 @@ export class ArticuloService {
   insert(articulo: Articulo): Observable<any> {
     return this.http.post(this.url, articulo);
   }
+  eliminar(id: number): Observable<any> {
+    return this.http.delete(`${this.url}/eliminar/usuario/${id}`);
+  }
+
   setList(listaNueva: Articulo[]) {
     this.listaCambio.next(listaNueva);
   }
@@ -38,6 +42,10 @@ export class ArticuloService {
 
   editarEstadoArticulo(articulo: Articulo): Observable<any> {
     return this.http.put(`${environment.apiUrl}/mis-articulos`, articulo);
+  }
+
+  listarPorUsuario(username: string): Observable<any> {
+    return this.http.get(`${environment.apiUrl}/usuarios/${username}/articulos`)
   }
 
   getList(): Observable<any> {

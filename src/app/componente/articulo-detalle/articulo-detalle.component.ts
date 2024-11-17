@@ -20,6 +20,9 @@ import {
   ArticuloConfirmacionDialogComponent
 } from '../articulo-confirmacion-dialog/articulo-confirmacion-dialog.component';
 import {MatOption, MatSelect, MatSelectModule} from '@angular/material/select';
+import {
+  EliminarConfirmacionDialogComponent
+} from '../eliminar-confirmacion-dialog/eliminar-confirmacion-dialog.component';
 
 @Component({
   selector: 'app-articulo-detalle',
@@ -192,8 +195,37 @@ export class ArticuloDetalleComponent {
     })
   }
 
+  eliminarArticulo() {
+    const dialogRef = this.dialog.open(EliminarConfirmacionDialogComponent, {
+      data: {
+        tipo: "artículo"
+      }
+    });
+
+    dialogRef.afterClosed().subscribe({
+      next: (accionConfirmada) => {
+        if (accionConfirmada) {
+
+          console.log("Se eliminará el artículo.");
+
+          this.articuloService.eliminar(this.articulo.id).subscribe({
+            next: (data) => {
+              console.log(data);
+              alert("El artículo se eliminó exitosamente");
+              this.router.navigate(['/app/mis-articulos']);
+            }
+          });
+        }
+      },
+      error: err => {
+        console.log(err);
+      }
+    });
+  }
+
   protected esArticuloDelUsuario(id: number): boolean {
     return this.usuarioAutenticado.id === id;
   }
+
 }
 

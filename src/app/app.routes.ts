@@ -13,6 +13,7 @@ import {MisArticulosComponent} from './componente/mis-articulos/mis-articulos.co
 import {TruequeRecibidasComponent} from './componente/trueque-recibidas/trueque-recibidas.component';
 import {TruequeEnviadasComponent} from './componente/trueque-enviadas/trueque-enviadas.component';
 import {TruequeDetalleComponent} from './componente/trueque-detalle/trueque-detalle.component';
+import {MiPerfilComponent} from './componente/mi-perfil/mi-perfil.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthRedirectGuard] },
@@ -26,12 +27,14 @@ export const routes: Routes = [
     children: [
       { path: 'feed', component: FeedComponent },
       { path: 'registrar-articulo', component: ArticuloRegistroComponent },
+      { path: 'perfil/:username', component: UsuarioPerfilComponent },
       { path: 'perfil', component: UsuarioPerfilComponent },
       { path: 'articulo/:id', component: ArticuloDetalleComponent },
       { path: 'mis-articulos', component: MisArticulosComponent },
       { path: 'propuestas/enviadas', component: TruequeEnviadasComponent },
       { path: 'propuestas/recibidas', component: TruequeRecibidasComponent },
       { path: 'propuestas/:id', component: TruequeDetalleComponent },
+      { path: 'mi-perfil', component: MiPerfilComponent },
     ]
   },
 ];

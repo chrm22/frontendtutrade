@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Eliminar {{data.tipo}}</h2>
+<mat-dialog-content>
+  <p>¿Deseas eliminar el {{data.tipo}}? Esta acción no es reversible.</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-button (click)="confirmar()">Confirmar</button>
+</mat-dialog-actions>

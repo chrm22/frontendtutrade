@@ -1,1 +1,43 @@
-<p>usuario-perfil works!</p>
+<div style="display: flex; flex-direction: column; align-items: center; margin-top: 30px">
+  <div class="imagen-container">
+    <img [ngSrc]="userImage" alt="Foto de perfil" height="200" width="200"
+         style="border-radius: 100%; border: 3px solid #f0ad4e;">
+  </div>
+  <h2 style="font-weight: lighter; margin-top:10px">{{usuario.username}}</h2>
+
+  <div style="font-weight: normal; text-align: center">
+    <p>Nombre: {{usuario.nombreCompleto}}</p>
+    <p>Ubicación: {{usuario.localidad}}</p>
+  </div>
+</div>
+
+<div *ngIf="articulos.length <= 0">
+  <h2>Este usuario no tiene artículos registrados.</h2>
+</div>
+
+<div class="articulos-container" *ngIf="articulos.length > 0">
+  <mat-card class="articulo-card" appearance="outlined" *ngFor="let articulo of articulos"
+            style="background-color: whitesmoke; border-color: whitesmoke"
+            [routerLink]="'/app/articulo/' + articulo.id">
+    <img mat-card-image ngSrc="{{ articulo.imagenes[0].url }}" alt="{{ articulo.nombre }}" width="280" height="280"
+         style="object-fit: cover"
+         priority />
+    <mat-card-content>
+      <h3 style="font-weight: lighter">{{ articulo.nombre }}</h3>
+
+      <div class="visibilidad-container">
+        <mat-icon *ngIf="articulo.publico">public</mat-icon>
+        <mat-icon *ngIf="!articulo.publico">lock</mat-icon>
+      </div>
+
+      <div class="estado-container">
+        <h4 [ngStyle]="{'background-color': articulo.color}"
+            style="font-weight: lighter; text-transform: capitalize">
+          {{ articulo.estado }}
+        </h4>
+      </div>
+
+    </mat-card-content>
+
+  </mat-card>
+</div>

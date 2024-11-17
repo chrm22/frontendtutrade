@@ -16,8 +16,8 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);  /* Define 5 columnas de igual tamaño */
   gap: 20px;  /* Espacio entre las tarjetas */
-  margin: 20px auto;
-  padding: 20px;
+  margin: 0 auto 20px auto;
+  padding: 0 20px 20px 20px;
 }
 
 .estado-container {

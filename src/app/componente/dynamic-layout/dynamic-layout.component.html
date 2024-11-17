@@ -1,10 +1,11 @@
 <mat-toolbar class="navbar">
-  <span>My App</span>
+  <img src="https://i.postimg.cc/gkbq94WB/logo.png" alt="Tru Trade Logo" class="logo"
+      [routerLink]="'/app/feed'">
   <span class="left-side">
 
     <span class="opciones">
       <a [routerLink]="'/app/feed'">Inicio</a>
-      <a [routerLink]="'/app/perfil'">Mi Perfil</a>
+      <a [routerLink]="'/app/mi-perfil'">Mi Perfil</a>
       <a [matMenuTriggerFor]="articulos">Mis Artículos<mat-icon>arrow_drop_down</mat-icon></a>
       <a [matMenuTriggerFor]="trueques">Trueques<mat-icon>arrow_drop_down</mat-icon></a>
       <mat-menu class="menu-articulos" #articulos>

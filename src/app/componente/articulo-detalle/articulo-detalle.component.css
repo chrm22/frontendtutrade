@@ -15,8 +15,8 @@
 
 .articulo-datos-container {
   display: flex;
-  justify-content: center; /* Centra el contenido dentro de la tarjeta */
-  max-width: 400px; /* Puedes ajustar el tamaño según sea necesario */
+  justify-content: center;
+  max-width: 400px;
   width: 100%;
   align-items: center;
 }

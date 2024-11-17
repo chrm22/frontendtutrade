@@ -1,0 +1,72 @@
+<link rel="preconnect" href="https://res.cloudinary.com">
+
+<div>
+  <div class="titulo-detalle-container">
+    Mi perfil
+  </div>
+
+  <div class="usuario-detalle-container">
+    <!-- Contenedor de la imagen -->
+    <div class="imagen-container">
+      <img [ngSrc]="imageUrl" alt="Imagen de artículo"
+           height="250" width="250"
+           style="border-radius: 100%; border: 3px solid #f0ad4e; align-items: center"
+           (click)="fileInput.click()">
+      <input #fileInput type="file" (change)="onImageSelected($event)" accept="image/*" style="display: none;" />
+    </div>
+
+    <!-- Contenedor de datos de usuario -->
+    <mat-card class="usuario-datos-container" style="background-color: white; box-shadow: none;">
+      <div style="margin-top: 30px;">
+        <form [formGroup]="datosForm" style="display: flex; flex-direction: column">
+          <mat-form-field appearance="fill" style="margin-bottom: 10px">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" />
+            <mat-error *ngIf="datosForm.get('nombre')?.hasError('pattern')">
+              Ingresa solo letras (con tildes y ñ) y espacios.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" style="margin-bottom: 10px">
+            <mat-label>Apellido</mat-label>
+            <input matInput [value]="usuario.apellido" formControlName="apellido" />
+            <mat-error *ngIf="datosForm.get('apellido')?.hasError('pattern')">
+              Ingresa solo letras (con tildes y ñ) y espacios.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" style="margin-bottom: 10px">
+            <mat-label>Teléfono</mat-label>
+            <input matInput [value]="usuario.telefono" formControlName="telefono" />
+
+            <mat-error *ngIf="datosForm.get('telefono')?.hasError('pattern')">
+              El número de teléfono debe tener 9 caracteres numéricos.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" style="margin-bottom: 10px">
+            <mat-label>Correo electrónico</mat-label>
+            <input matInput [value]="usuario.email" formControlName="email" />
+
+            <mat-error *ngIf="datosForm.get('email')?.hasError('email')">
+              Ingrese un correo electrónico válido.
+            </mat-error>
+          </mat-form-field>
+        </form>
+      </div>
+
+    </mat-card>
+  </div>
+
+  <div class="set-botones">
+    <button mat-flat-button style="background-color: blue; color: white; margin-top: 30px"
+            (click)="onSubmit()">
+      Editar usuario
+    </button>
+    <button mat-flat-button style="background-color: red; color: white; margin-top: 30px"
+            (click)="eliminarUsuario()">
+      Eliminar usuario
+    </button>
+  </div>
+
+</div>

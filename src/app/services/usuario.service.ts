@@ -21,6 +21,14 @@ export class UsuarioService {
     return this.http.post(this.url + "/register", usuario);
   }
 
+  editarUsuario(usuario: Usuario): Observable<any> {
+    return this.http.put(this.url, usuario);
+  }
+
+  eliminarUsuario(usuario: Usuario): Observable<any> {
+    return this.http.put(this.url + "/eliminar", usuario);
+  }
+
   getById(id: number): Observable<any> {
     return this.http.get<Usuario>(`${this.url}/id/${id}`);
   }

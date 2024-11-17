@@ -1,0 +1,43 @@
+.titulo-detalle-container {
+  text-align: center;
+  margin: 3% 0;
+  font-size: 2rem;
+  font-weight: lighter;
+}
+
+.usuario-detalle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 5rem;
+}
+
+.imagen-container {
+  overflow: hidden;
+}
+
+.imagen-container img {
+  opacity: 80%;
+  transition: opacity 0.2s ease;
+  object-fit: cover;
+}
+
+.imagen-container img:hover {
+  opacity: 100%;
+  cursor: pointer;
+}
+
+.usuario-datos-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 400px;
+  width: 100%;
+}
+
+.set-botones {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+}

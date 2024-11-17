@@ -27,12 +27,15 @@
         <p>{{ articulo?.descripcion }}</p>
       </mat-card-content>
 
-      <button mat-flat-button style="background-color: #f29435; color: white; margin-top: 50px"
-              *ngIf="!esArticuloDelUsuario(articulo.usuario.id)"
-              [routerLink]="'/app/articulo/editar/' + articulo.id"
-              (click)="abrirSeleccionArticuloDialog()">
-        Enviar solicitud
-      </button>
+      <div *ngIf="!esArticuloDelUsuario(articulo.usuario.id)">
+        <button mat-flat-button style="background-color: #f29435; color: white; margin-top: 50px"
+                [routerLink]="'/app/articulo/editar/' + articulo.id"
+                *ngIf="!(articulo.estado === 'intercambiado')"
+                (click)="abrirSeleccionArticuloDialog()">
+          Enviar solicitud
+        </button>
+      </div>
+
 
       <div *ngIf="esArticuloDelUsuario(articulo.usuario.id)" style="margin-top: 30px">
         <div style="display: flex;">
@@ -59,10 +62,14 @@
           </mat-radio-group>
         </div>
 
-        <div style="display: flex; justify-content: center;">
+        <div style="display: flex; justify-content: center; gap: 20px">
           <button mat-flat-button style="background-color: dodgerblue; color: white; margin-top: 30px"
                   (click)="editarArticulo()">
             Editar artículo
+          </button>
+          <button mat-flat-button style="background-color: red; color: white; margin-top: 30px"
+                  (click)="eliminarArticulo()">
+            Eliminar artículo
           </button>
         </div>
 

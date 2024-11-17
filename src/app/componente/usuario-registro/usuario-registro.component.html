@@ -111,6 +111,9 @@
               <mat-error *ngIf="registroForm.get('email')?.hasError('required')">
                 El correo electrónico es requerido.
               </mat-error>
+              <mat-error *ngIf="registroForm.get('email')?.hasError('email')">
+                Ingrese un correo electrónico válido.
+              </mat-error>
               <mat-error *ngIf="registroForm.get('email')?.hasError('emailYaExiste')">
                 El correo electrónico no está disponible.
               </mat-error>

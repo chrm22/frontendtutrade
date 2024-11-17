@@ -1,9 +1,17 @@
 .navbar.mat-toolbar {
   justify-content: space-between;
   align-items: center;
-  background-color: white;
+  background-color: black;
   /*border-bottom: 3px solid darkgray;*/
   height: 80px;
+}
+
+.logo {
+  height: 80px;
+}
+
+.logo:hover {
+  cursor: pointer;
 }
 
 .opciones {

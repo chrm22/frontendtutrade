@@ -66,7 +66,7 @@ export class ArticuloRegistroComponent {
       reader.onload = (e) => {
         this.imageUrl = e.target?.result;
       };
-      reader.readAsDataURL(this.file); // Convierte la imagen a una URL en base64
+      reader.readAsDataURL(this.file);
     }
   }
 
