@@ -4,10 +4,11 @@ import { Router } from '@angular/router';
 import {MatButton} from '@angular/material/button';
 import {MatCard, MatCardContent} from '@angular/material/card';
 import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from '@angular/material/datepicker';
-import {MatFormField, MatLabel, MatSuffix} from '@angular/material/form-field';
+import {MatError, MatFormField, MatLabel, MatSuffix} from '@angular/material/form-field';
 import {MatIcon} from '@angular/material/icon';
 import {MatInput} from '@angular/material/input';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,9 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
     MatInput,
     MatLabel,
     MatSuffix,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatError,
+    NgIf
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -50,9 +53,9 @@ export class LoginComponent {
         next: (response) => {
           console.log("Login exitoso");
           this.router.navigate(['/app/feed']);
-          // this.router.navigate(['/dashboard']);
         },
         error: (error) => {
+          alert("Las credenciales ingresadas no son válidas.");
           console.error('Error en el inicio de sesión', error);
         }
       });

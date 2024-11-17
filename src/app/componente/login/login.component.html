@@ -7,18 +7,26 @@
     <mat-card-content>
       <form [formGroup]="loginForm" class="form-container">
 
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" style="margin-bottom: 10px">
           <mat-label>Username</mat-label>
           <input matInput formControlName="username" />
+          <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
+            Ingrese su nombre de usuario.
+          </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" style="margin-bottom: 10px">
           <mat-label>Contraseña</mat-label>
           <input matInput [type]="hide ? 'password' : 'text'"  formControlName="password" />
           <mat-icon matSuffix (click)="hide = !hide" style="cursor: pointer">
             {{hide ? 'visibility_off' : 'visibility'}}
           </mat-icon>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+            Ingrese su contraseña.
+          </mat-error>
         </mat-form-field>
+
+
 
         <button mat-raised-button color="primary" type="submit" (click)="login()">Login</button>
       </form>
